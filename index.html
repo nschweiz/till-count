@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Till Counter</title>
+  <style>
+    body {
+      font-family: sans-serif;
+      padding: 20px;
+      max-width: 500px;
+      margin: auto;
+    }
+    input[type="number"] {
+      width: 60px;
+    }
+    .row {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+    .total, .expected, .difference {
+      font-weight: bold;
+    }
+    .green {
+      color: green;
+    }
+    .red {
+      color: red;
+    }
+  </style>
+
+  <script>
+    function calculate() {
+      const denominations = {
+        "penny": 0.01, "nickel": 0.05, "dime": 0.10, "quarter": 0.25,
+        "1": 1, "5": 5, "10": 10, "20": 20, "50": 50, "100": 100
+      };
+      let total = 0;
+      for (let key in denominations) {
+        const count = parseInt(document.getElementById(key).value) || 0;
+        const subtotal = count * denominations[key];
+        document.getElementById(`${key}-subtotal`).innerText = `$${subtotal.toFixed(2)}`;
+        total += subtotal;
+      }
+      document.getElementById("total").innerText = `$${total.toFixed(2)}`;
+
+const expected = 200.00;
+      document.getElementById("expected").innerText = `$${expected.toFixed(2)}`;
+
+      const diff = total - expected;
+      const diffElement = document.getElementById("difference");
+
+      if (diff < 0) {
+        diffElement.innerText = `($${Math.abs(diff).toFixed(2)})`;
+        diffElement.className = "difference red";
+      } else {
+        diffElement.innerText = `$${diff.toFixed(2)}`;
+        diffElement.className = "difference green";
+      }
+    }
+  </script>
+  <style>
+    body { font-family: sans-serif; padding: 20px; max-width: 500px; margin: auto; }
+    input[type="number"] { width: 60px; }
+    .row { display: flex; justify-content: space-between; margin-bottom: 10px; }
+  </style>
+</head>
+<body oninput="calculate()">
+  <h2>Count the <span style="color: blue;">TILL</span></h2>
+<br><br>
+<h3>Coins</h3>
+  <div class="row"><label>Pennies:</label> <input type="number" id="penny"><span id="penny-subtotal">$0.00</span></div>
+  <div class="row"><label>Nickels:</label> <input type="number" id="nickel"><span id="nickel-subtotal">$0.00</span></div>
+  <div class="row"><label>Dimes:</label> <input type="number" id="dime"><span id="dime-subtotal">$0.00</span></div>
+  <div class="row"><label>Quarters:</label> <input type="number" id="quarter"><span id="quarter-subtotal">$0.00</span></div>
+<br>
+<br>
+<h3>Bills</h3>
+  <div class="row"><label>$1 Bills:</label> <input type="number" id="1"><span id="1-subtotal">$0.00</span></div>
+  <div class="row"><label>$5 Bills:</label> <input type="number" id="5"><span id="5-subtotal">$0.00</span></div>
+  <div class="row"><label>$10 Bills:</label> <input type="number" id="10"><span id="10-subtotal">$0.00</span></div>
+  <div class="row"><label>$20 Bills:</label> <input type="number" id="20"><span id="20-subtotal">$0.00</span></div>
+  <div class="row"><label>$50 Bills:</label> <input type="number" id="50"><span id="50-subtotal">$0.00</span></div>
+  <div class="row"><label>$100 Bills:</label> <input type="number" id="100"><span id="100-subtotal">$0.00</span></div>
+  <hr>
+ <div class="row total"><span>Total:</span><span id="total">$0.00</span></div>
+  <div class="row expected"><span>Expected:</span><span id="expected">$200.00</span></div>
+  <div class="row"><span>Over / Under:</span><span id="difference" class="difference">$0.00</span></div>
+</body>
+
+</body>
+</html>
