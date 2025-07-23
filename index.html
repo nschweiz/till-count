@@ -2,6 +2,29 @@
 <html lang="en">
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+<script type="module">
+  // Import the functions you need from the SDKs you need
+  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-app.js";
+  import { getAnalytics } from "https://www.gstatic.com/firebasejs/12.0.0/firebase-analytics.js";
+  // TODO: Add SDKs for Firebase products that you want to use
+  // https://firebase.google.com/docs/web/setup#available-libraries
+
+  // Your web app's Firebase configuration
+  // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+  const firebaseConfig = {
+    apiKey: "AIzaSyB_o8--7vBcLvxqUs_RD3WxS3FIGEg5YMc",
+    authDomain: "dickeys-employee-login.firebaseapp.com",
+    projectId: "dickeys-employee-login",
+    storageBucket: "dickeys-employee-login.firebasestorage.app",
+    messagingSenderId: "109355700364",
+    appId: "1:109355700364:web:d4c0a94e1178097d26eba9",
+    measurementId: "G-672XJXTTG9"
+  };
+
+  // Initialize Firebase
+  const app = initializeApp(firebaseConfig);
+  const analytics = getAnalytics(app);
+</script>
   <title>Till Counter</title>
   <style>
     body {
@@ -66,6 +89,11 @@ const expected = 200.00;
   </style>
 </head>
 <body oninput="calculate()">
+<div id="auth-section">
+  <button onclick="login()">🔐 Login with Google</button>
+  <button onclick="logout()" style="display:none;">🚪 Logout</button>
+  <p id="user-greeting" style="font-weight:bold;"></p>
+</div>
   <h2>Count the <span style="color: blue;">TILL</span></h2>
 <br><br>
 <h3>Coins</h3>
